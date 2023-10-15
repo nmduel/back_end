@@ -20,7 +20,7 @@
       <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('users.create') }}" class="btn btn-success float-right m-2">Add</a>
+              <a href="{{ route('users.create') }}" class="btn btn-success float-right m-2">Add</a>
             </div>
             <div class="col-md-12">
               <table class="table">
@@ -40,7 +40,7 @@
                       <td>{{ $user->email }}</td>
                       <td>
                         <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-default">Edit</a>
-                        <a href="" data-url="{{ route('users.delete', ['id' => $user->id]) }}" class="btn btn-danger action_delete">Delete</a>
+                        <a href="" data-url="{{ route('users.delete', ['id' => $user->id]) }}" class="btn btn-danger action_delete">Delete</a>     
                       </td>
                     </tr>
                   @endforeach

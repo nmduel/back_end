@@ -31,7 +31,7 @@ class AdminSliderController extends Controller
 
     public function store(SliderAddRequest $request)
     {
-        try {
+        // try {
             $dataInsert = [
                 'name' => $request->name,
                 'description' => $request->description
@@ -44,10 +44,10 @@ class AdminSliderController extends Controller
                 $dataInsert['image_path'] = $dataImageSlider['file_path'];
             }
             $this->slider->create($dataInsert);
-            return redirect()->route('slider.index');
-        } catch (\Exception $exception) {
-            Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
-        }
+            return redirect()->route('sliders.index');
+        // } catch (\Exception $exception) {
+        //     Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+        // }
     }
     
     public function edit($id)
@@ -58,23 +58,20 @@ class AdminSliderController extends Controller
 
     public function update($id, Request $request)
     {
-        try {
-            $dataUpdate = [
-                'name' => $request->name,
-                'description' => $request->description
-            ];
-    
-            $dataImageSlider = $this->storageTraitUpload($request, 'image_path', 'slider');
-    
-            if(!empty($dataImageSlider)) {
-                $dataUpdate['image_name'] = $dataImageSlider['file_name'];
-                $dataUpdate['image_path'] = $dataImageSlider['file_path'];
-            }
-            $this->slider->find($id)->update($dataUpdate);
-            return redirect()->route('slider.index');
-        } catch (\Exception $exception) {
-            Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+
+        $dataUpdate = [
+            'name' => $request->name,
+            'description' => $request->description
+        ];
+
+        $dataImageSlider = $this->storageTraitUpload($request, 'image_path', 'slider');
+
+        if(!empty($dataImageSlider)) {
+            $dataUpdate['image_name'] = $dataImageSlider['file_name'];
+            $dataUpdate['image_path'] = $dataImageSlider['file_path'];
         }
+        $this->slider->find($id)->update($dataUpdate);
+        return redirect()->route('sliders.index');
     }
 
     public function delete($id)

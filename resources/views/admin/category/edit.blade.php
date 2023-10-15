@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Trang chu</title>
+    <title>Category Edit</title>
 @endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partials.content-header', ['name' => 'category', 'key' => 'Edit'])
+    @include('partials.content-header', ['name' => 'Category', 'key' => 'Edit'])
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -20,7 +20,10 @@
                     @csrf
                     <div class="form-group">
                         <label>Tên danh mục</label>
-                      <input type="text" class="form-control" placeholder="Nhập tên danh mục" name="name" value="{{ $category->name }}">
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên danh mục" name="name" value="{{ $category->name }}">
+                      @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
                     </div>
                     
                     <div class="form-group">

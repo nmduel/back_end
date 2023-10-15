@@ -15,28 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [AdminController::class, 'loginAdmin']);
-Route::post('/', [AdminController::class, 'postLoginAdmin']);
-Route::get('/logout', [AdminController::class, 'logout']);
+Route::get('/login', [AdminController::class, 'loginAdmin']);
+Route::post('/login', [AdminController::class, 'postLoginAdmin']);
 
 Route::get('/homepage', function(){
     return view('homepage');
 }); 
 
-// Route::prefix('admin')->group(function() {
-//     Route::get('/', [
-//         'as' => 'admin.login',
-//         'uses' => 'AdminController@loginAdmin'
-//     ]);
+Route::prefix('admin')->group(function() {
+    Route::get('/logout', [AdminController::class, 'logout']);
 
-//     Route::get('/', [
-//         'as' => 'admin.postLoginAdmin',
-//         'uses' => 'AdminController@postLoginAdmin'
-//     ]);
-
-//     Route::get('/logout', [
-//         'as' => 'admin.logout',
-//         'uses' => 'AdminController@logout'
-//     ]);
-
-// });
+    Route::get('/homepage', function(){
+        return view('homepage');
+    }); 
+});

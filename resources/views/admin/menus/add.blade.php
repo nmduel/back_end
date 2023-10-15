@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Trang chu</title>
+    <title>Menus Add</title>
 @endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partials.content-header', ['name' => 'menus', 'key' => 'Add'])
+    @include('partials.content-header', ['name' => 'Menus', 'key' => 'Add'])
     <!-- /.content-header -->
 
 
@@ -20,14 +20,17 @@
                 <form action="{{ route('menus.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label>Tên menus</label>
-                      <input type="text" class="form-control" placeholder="Nhập menus cha" name="name">
+                        <label>Tên menu</label>
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nhập menus cha" name="name">
+                      @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
                     </div>
                     
                     <div class="form-group">
-                        <label>Chọn menus cha</label>
+                        <label>Chọn menu cha</label>
                         <select class="form-control" name="parent_id">
-                          <option value="0">Chọn danh mục cha</option>
+                          <option value="0">Chọn menu</option>
                           {!! $optionSelect !!}
                         </select>
                       </div>

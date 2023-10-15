@@ -6,6 +6,7 @@ use App\Components\MenuRecusive;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class AdminMenuController extends Controller
@@ -21,13 +22,13 @@ class AdminMenuController extends Controller
     public function index()
     {
         $menus = $this->menu->paginate(10);
-        return view('admin.menus.index', compact('menus'));
+        return view('admin.menu.index', compact('menus'));
     }
 
     public function create()
     {
         $optionSelect = $this->menuRecusive->menuRecusiveAdd();
-        return view('admin.menus.add', compact('optionSelect'));        
+        return view('admin.menu.add', compact('optionSelect'));        
     }
 
     public function store(Request $request)
@@ -37,13 +38,13 @@ class AdminMenuController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('menus.index');
     }
 
     public function edit($id, Request $request, ) {
         $menuFollowIdEdit = $this->menu->find($id);
         $optionSelect = $this->menuRecusive->menuRecusiveEdit($menuFollowIdEdit->parent_id);
-        return view('admin.menus.edit', compact('optionSelect', 'menuFollowIdEdit'));
+        return view('admin.menu.edit', compact('optionSelect', 'menuFollowIdEdit'));
     }
 
     public function update($id, Request $request) 
@@ -53,18 +54,31 @@ class AdminMenuController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('menus.index');
     }
 
     public function delete($id) 
     {
-    $menu = Menu::where('id',$id)->first();
+    // $menu = Menu::where('id',$id)->first();
 
-    if ($menu != null) {
-        $menu->delete();
-        return redirect()->route('admin.menus.index')->with(['message'=> 'Successfully deleted!!']);
+    // if ($menu != null) {
+    //     $menu->delete();
+    //     return redirect()->route('menus.index')->with(['message'=> 'Successfully deleted!!']);
+    // }
+    //     return redirect()->route('admin.menus.index')->with(['message'=> 'Wrong ID!!']);
+    // }
+    try {
+        $this->menu->find($id)->delete();
+        return response()->json([
+            'code' => 200,
+            'message' => 'success'
+        ], 200);
+    } catch (\Exception $exception) {
+        Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+        return response()->json([
+            'code' => 500,
+            'message' => 'fail'
+        ], 500);
     }
-
-    return redirect()->route('admin.menus.index')->with(['message'=> 'Wrong ID!!']);
-    }
+}
 }

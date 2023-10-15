@@ -26,8 +26,7 @@
                         <label>Tên vai trò</label>
                         <input 
                             type="text"
-                            @error('name') is-invalid @enderror
-                            class="form-control" 
+                            class="form-control @error('name') is-invalid @enderror" 
                             placeholder="Nhập tên vai trò" 
                             name="name"
                             value="{{ old('name') }}"
@@ -41,8 +40,7 @@
                         <label>Mô tả vai trò</label>
                         <textarea 
                                 class="form-control" 
-                                @error('display_name') is-invalid @enderror
-                                name="display_name" rows="4"
+                                name="display_name @error('display_name') is-invalid @enderror" rows="4"
                                 placeholder="Nhập mô tả vai trò"
                         >{{ old('display_name') }}</textarea>
                         @error('display_name')

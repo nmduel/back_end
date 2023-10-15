@@ -26,30 +26,39 @@
                     <div class="form-group">
                         <label>Tên</label>
                       <input type="text"
-                            class="form-control" 
+                            class="form-control @error('name') is-invalid @enderror" 
                             placeholder="Nhập tên" 
                             name="name"
                             value="{{ $user->name }}"
                         >
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
                       <input type="text"
-                            class="form-control" 
+                            class="form-control @error('email') is-invalid @enderror" 
                             placeholder="Nhập email" 
                             name="email"
                             value="{{ $user->email }}"
                         >
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="form-group">
                         <label>Password</label>
                       <input type="password"
-                            class="form-control" 
+                            class="form-control @error('password') is-invalid @enderror" 
                             placeholder="Nhập password" 
                             name="password"
                         >
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">

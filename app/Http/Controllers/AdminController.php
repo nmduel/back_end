@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use function Laravel\Prompts\alert;
 
 class AdminController extends Controller
 {
@@ -13,7 +16,6 @@ class AdminController extends Controller
     {
         if(auth()->check())
         {
-            
             return redirect()->to('homepage');
         }
         return view('login');    
@@ -28,13 +30,15 @@ class AdminController extends Controller
         ], $remember))
         {
             return redirect()->to('homepage');
+        }else
+        {
+            return alert('Sai mat khau');
         }
     }
 
     public function logout(Request $request): RedirectResponse
-{
-    Auth::logout();
- 
-    return redirect('/');
-}
+    {
+        Auth::logout();
+        return redirect('/homepage');
+    }
 }

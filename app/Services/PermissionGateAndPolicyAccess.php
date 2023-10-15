@@ -15,7 +15,6 @@ class PermissionGateAndPolicyAccess {
         $this->defineGateRole();
         $this->defineGateSetting();
         $this->defineGateSlider();
-        $this->defineGateUser();
     }
 
     public function defineGateCategory()
@@ -74,12 +73,5 @@ class PermissionGateAndPolicyAccess {
         Gate::define('slider-delete', 'App\Policies\SliderPolicy@delete');
     }
 
-    public function defineGateUser()
-    {
-        Gate::define('user-list', 'App\Policies\UserPolicy@view');
-        Gate::define('user-add', 'App\Policies\UserPolicy@create');
-        Gate::define('user-edit', 'App\Policies\UserPolicy@update');
-        Gate::define('user-delete', 'App\Policies\UserPolicy@delete');
-    }
 
 }

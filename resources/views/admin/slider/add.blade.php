@@ -21,8 +21,7 @@
                     <div class="form-group">
                         <label>Tên slider</label>
                       <input type="text"
-                            @error('name') is-invalid @enderror
-                            class="form-control" 
+                            class="form-control @error('name') is-invalid @enderror" 
                             placeholder="Nhập menus cha" 
                             name="name"
                             value="{{ old('name') }}"
@@ -35,8 +34,7 @@
                     <div class="form-group">
                         <label>Mô tả slider</label>
                         <textarea 
-                                class="form-control" 
-                                @error('description') is-invalid @enderror
+                                class="form-control @error('description') is-invalid @enderror" 
                                 name="description" rows="4"
                                 placeholder="Nhập mô tả"
                         >{{ old('description') }}</textarea>
@@ -47,7 +45,7 @@
 
                     <div class="form-group">
                         <label>Hình ảnh</label>
-                      <input type="file" @error('image_path') is-invalid @enderror class="form-control-file" name="image_path">
+                      <input type="file" class="form-control-file @error('image_path') is-invalid @enderror" name="image_path">
                         @error('image_path')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror        

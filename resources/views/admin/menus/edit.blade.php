@@ -1,16 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Trang chu</title>
+    <title>Menus Edit</title>
 @endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partials.content-header', ['name' => 'menus', 'key' => 'Edit'])
+    @include('partials.content-header', ['name' => 'Menus', 'key' => 'Edit'])
     <!-- /.content-header -->
-
 
     <!-- Main content -->
     <div class="content">
@@ -27,13 +26,17 @@
                             placeholder="Nhập tên danh mục" 
                             name="name"
                             value="{{ $menuFollowIdEdit->name }}"
+                            @error('name') is-invalid @enderror
                       >
+                      @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
                     </div>
                     
                     <div class="form-group">
-                        <label>Chọn danh mục cha</label>
+                        <label>Chọn menu cha</label>
                         <select class="form-control" name="parent_id">
-                          <option value="0">Chọn danh mục</option>
+                          <option value="0">Chọn menu</option>
                           {!! $optionSelect !!}
                         </select>
                       </div>

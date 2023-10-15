@@ -21,7 +21,7 @@
                     @csrf
                     <div class="form-group">
                       <label>Config key</label>
-                      <input type="text" @error('config_key') is-invalid @enderror class="form-control" placeholder="Nhập config key" name="config_key">
+                      <input type="text" class="form-control @error('config_key') is-invalid @enderror" placeholder="Nhập config key" name="config_key">
                       @error('config_key')
                         <div class="alert alert-danger">{{ $message }}</div>
                       @enderror
@@ -31,19 +31,18 @@
                     <div class="form-group">
                       <label>Config value</label>
                       <input  type="text"
-                              @error('config_value') is-invalid @enderror
-                              class="form-control" placeholder="Nhập config value" name="config_value">
+                              class="form-control @error('config_value') is-invalid @enderror"  placeholder="Nhập config value" name="config_value">
                       @error('config_value')
                         <div class="alert alert-danger">{{ $message }}</div>
                       @enderror
                       </div>
                       @elseif (request()->type === "Textarea")
                       <textarea 
-                              class="form-control"
+                              class="form-control @error('config_value') is-invalid @enderror"
                               placeholder="Nhập config value" 
                               name="config_value"
                               rows="5"
-                              @error('config_value') is-invalid @enderror></textarea>
+                              ></textarea>
                       @error('config_value')
                         <div class="alert alert-danger">{{ $message }}</div>
                       @enderror

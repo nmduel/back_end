@@ -35,20 +35,13 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
-            $user = $this->user->create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-            $user->roles()->attach($request->role_id);
-            DB::commit();
-            return redirect()->route('users.index');
-        } catch(Exception $exception) {
-            DB::rollBack();
-                Log::error('Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
-        }
+        $user = $this->user->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        $user->roles()->attach($request->role_id);
+        return redirect()->route('users.index');
     }
 
     public function edit($id)
@@ -61,21 +54,14 @@ class AdminUserController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
-            DB::beginTransaction();
-            $this->user->find($id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-            $user = $this->user->find($id);
-            $user->roles()->sync($request->role_id);
-            DB::commit();
-            return redirect()->route('users.index');
-        } catch(Exception $exception) {
-            DB::rollBack();
-            Log::error('Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
-        }
+        $this->user->find($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        $user = $this->user->find($id);
+        $user->roles()->sync($request->role_id);
+        return redirect()->route('users.index');
     }
 
     public function delete(Request $request, $id)

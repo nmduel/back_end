@@ -35,7 +35,11 @@
                         <label>Giá sản phẩm</label>
                       <input type="text"
                               value="{{ $product->price }}"
-                      class="form-control" placeholder="Nhập giá sản phẩm" name="price">
+                              class="form-control @error('name') is-invalid @enderror" 
+                              placeholder="Nhập giá sản phẩm" name="price">
+                      @error('price')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
                     </div>  
 
                     <div class="form-group">
@@ -82,8 +86,11 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Nhập nội dung</label>
-                  <textarea name="contents" class="form-control tinymce_editor_init" rows="8">{{ $product->content }}</textarea>
-              </div>
+                  <textarea name="contents" class="form-control @error('contents') is-invalid @enderror" rows="8">{{ $product->content }}</textarea>
+                  @error('contents')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                </div>
             </div>
             <div class="col-md-12"> 
               <button type="submit" class="btn btn-primary">Submit</button>

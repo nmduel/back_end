@@ -7,7 +7,6 @@ Route::prefix('admin')->group(function() {
         Route::get('/', [
             'as' => 'roles.index',
             'uses' => 'AdminRoleController@index',
-            'middleware' => 'can:role-list'
         ]);
 
         Route::get('/create', [

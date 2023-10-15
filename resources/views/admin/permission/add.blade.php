@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Permissions</title>
+    <title>Permissions Add</title>
 @endsection
 
 @section('content')

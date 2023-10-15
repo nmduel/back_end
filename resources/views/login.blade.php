@@ -43,17 +43,24 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="email" class="text-info">Email:</label><br>
-                                <input type="text" name="email" id="username" class="form-control">
+                                <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" >
+                                @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="remember-me" 
                                     class="text-info"><span>Remember me</span> 
-                                    <span><input id="remember_me" name="remember_me" type="checkbox"></span>
+                                    <span><input id="remember_me" class="checked" name="remember_me" type="checkbox"></span>
                                 </label><br>
+                                
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                             </div>
                         </form>

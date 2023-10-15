@@ -1,23 +1,26 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Trang chu</title>
+    <title>Category List</title>
 @endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partials.content-header', ['name' => 'category', 'key' => 'List'])
+    @include('partials.content-header', ['name' => 'Category', 'key' => 'List'])
     <!-- /.content-header -->
 
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            @can('category-add')
+              <div class="col-md-12">
                 <a href="{{ route('categories.create') }}" class="btn btn-success float-right m-2">Add</a>
-            </div>
+              </div>
+            @endcan
+  
             <div class="col-md-12">
               <table class="table">
                 <thead>
