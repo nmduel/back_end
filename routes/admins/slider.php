@@ -7,13 +7,13 @@ Route::prefix('admin')->group(function() {
         Route::get('/', [
             'as' => 'sliders.index',
             'uses' => 'AdminSliderController@index',
-            'middleware' => 'can:slider-list'
+            // 'middleware' => 'can:slider-list'
         ]);
 
         Route::get('/create', [
             'as' => 'sliders.create',
             'uses' => 'AdminSliderController@create',
-            'middleware' => 'can:slider-add'
+            // 'middleware' => 'can:slider-add'
         ]);
 
         Route::post('/store', [
@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/edit/{id}', [
             'as' => 'sliders.edit',
             'uses' => 'AdminSliderController@edit',
-            'middleware' => 'can:slider-edit,id'
+            // 'middleware' => 'can:slider-edit,id'
         ]);
 
         Route::post('/update/{id}', [
@@ -35,7 +35,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/delete/{id}', [
             'as' => 'sliders.delete',
             'uses' => 'AdminSliderController@delete',
-            'middleware' => 'can:slider-delete'
+            // 'middleware' => 'can:slider-delete'
         ]);
     });
 });

@@ -47,7 +47,7 @@
           <i class="fas fa-th-large dropdown" ></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/admin/homepage">Home Page</a>
+          <a class="dropdown-item" href="/admin">Home Page</a>
           <a class="dropdown-item" href="/login">Login</a>
           <a class="dropdown-item" href="/admin/logout">Log out</a>
         </div>

@@ -18,14 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [AdminController::class, 'loginAdmin']);
 Route::post('/login', [AdminController::class, 'postLoginAdmin']);
 
-Route::get('/homepage', function(){
+Route::get('/', function(){
     return view('homepage');
 }); 
 
 Route::prefix('admin')->group(function() {
     Route::get('/logout', [AdminController::class, 'logout']);
 
-    Route::get('/homepage', function(){
+    Route::get('/', function(){
         return view('homepage');
     }); 
 });

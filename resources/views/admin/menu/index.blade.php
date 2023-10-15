@@ -15,11 +15,11 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-            @can('menu-add')
+            {{-- @can('menu-add') --}}
               <div class="col-md-12">
                 <a href="{{ route('menus.create') }}" class="btn btn-success float-right m-2">Add</a>
               </div>
-            @endcan
+            {{-- @endcan --}}
       
             <div class="col-md-12">
               <table class="table">
@@ -37,12 +37,12 @@
                       <th scope="row">{{ $menu->id }}</th>
                       <td>{{ $menu->name }}</td>
                       <td>
-                        @can('menu-add')
+                        {{-- @can('menu-add') --}}
                         <a href="{{ route('menus.edit', ['id' => $menu->id]) }}" class="btn btn-default">Edit</a>
-                        @endcan
-                        @can('menu-delete')
+                        {{-- @endcan
+                        @can('menu-delete') --}}
                         <a href="" data-url="{{ route('menus.delete', ['id' => $menu->id]) }}" class="btn btn-danger action_delete">Delete</a>
-                        @endcan
+                        {{-- @endcan --}}
                       </td>
                     </tr>
                   @endforeach

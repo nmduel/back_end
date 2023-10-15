@@ -7,13 +7,13 @@ Route::prefix('admin')->group(function() {
         Route::get('/', [
             'as' => 'menus.index',
             'uses' => 'AdminMenuController@index',
-            'middleware' => 'can:menu-list'
+            // 'middleware' => 'can:menu-list'
         ]);
 
         Route::get('/create', [
             'as' => 'menus.create',
             'uses' => 'AdminMenuController@create',
-            'middleware' => 'can:menu-add'
+            // 'middleware' => 'can:menu-add'
         ]);
 
         Route::post('/store', [
@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/edit/{id}', [
             'as' => 'menus.edit',
             'uses' => 'AdminMenuController@edit',
-            'middleware' => 'can:menu-edit'
+            // 'middleware' => 'can:menu-edit'
         ]);
 
         Route::post('/update/{id}', [
@@ -35,7 +35,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/delete/{id}', [
             'as' => 'menus.delete',
             'uses' => 'AdminMenuController@delete',
-            'middleware' => 'can:menu-delete'
+            // 'middleware' => 'can:menu-delete'
         ]);
     });
 });

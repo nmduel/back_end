@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\CategoryRecusive;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -11,10 +12,11 @@ use Illuminate\Support\Str;
 
 class AdminCategoryController extends Controller
 {
+    private $categoryRecusive;
     private $category;
-
-    public function __construct(Category $category)
+    public function __construct(CategoryRecusive $categoryRecusive, Category $category)
     {
+        $this->categoryRecusive = $categoryRecusive;
         $this->category = $category;
     }
 
@@ -26,7 +28,7 @@ class AdminCategoryController extends Controller
 
     public function create()
     {
-        $htmlOption = $this->getCategory($parentId = '');   
+        $htmlOption = $this->categoryRecusive->categoryRecusiveAdd();
         return view('admin.category.add', compact('htmlOption'));
     }
 
@@ -49,7 +51,7 @@ class AdminCategoryController extends Controller
 
     public function edit($id) {
         $category = $this->category->find($id);
-        $htmlOption = $this->getCategory($category->parent_id);    
+        $htmlOption = $this->categoryRecusive->categoryRecusiveEdit($category->parent_id);    
         
         return view('admin.category.edit', compact('category', 'htmlOption'));
     }

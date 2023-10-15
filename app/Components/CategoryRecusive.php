@@ -2,42 +2,41 @@
 
 namespace App\Components;
 
-use App\Models\Menu; 
+use App\Models\Category;
 
-class MenuRecusive 
+class CategoryRecusive 
 {
-
     private $html;
     public function __construct()
     {
         $this->html = '';
     }
 
-    public function menuRecusiveAdd($parentID = 0, $subMark = '')
+    public function categoryRecusiveAdd($parentID = 0, $subMark = '')
     {
-        $data = Menu::where('parent_id', $parentID)->get();
+        $data = Category::where('parent_id', $parentID)->get();
         foreach($data as $dataItem)
         {
             $this->html .= '<option value="' . $dataItem->id . '">' . $subMark . $dataItem->name . '</option>';
-            $this->menuRecusiveAdd($dataItem->id, $subMark . '--');
+            $this->categoryRecusiveAdd($dataItem->id, $subMark . '--');
         }
 
         return $this->html;
     }
 
-    public function menuRecusiveEdit($parentIdMenuEdit, $parentID = 0, $subMark = '')
+    public function categoryRecusiveEdit($parentIdCategoryEdit, $parentID = 0, $subMark = '')
     {
-        $data = Menu::where('parent_id', $parentID)->get();
+        $data = Category::where('parent_id', $parentID)->get();
         foreach($data as $dataItem)
         {
-            if($parentIdMenuEdit == $dataItem->id)
+            if($parentIdCategoryEdit == $dataItem->id)
             {
                 $this->html .= '<option selected value="' . $dataItem->id . '">' . $subMark . $dataItem->name . '</option>';
 
             }else{
                 $this->html .= '<option value="' . $dataItem->id . '">' . $subMark . $dataItem->name . '</option>';
             }
-            $this->menuRecusiveEdit($parentIdMenuEdit, $dataItem->id, $subMark . '--');
+            $this->categoryRecusiveEdit($parentIdCategoryEdit, $dataItem->id, $subMark . '--');
         }
 
         return $this->html;

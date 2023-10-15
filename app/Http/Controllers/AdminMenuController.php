@@ -28,11 +28,11 @@ class AdminMenuController extends Controller
     public function create()
     {
         $optionSelect = $this->menuRecusive->menuRecusiveAdd();
-        return view('admin.menu.add', compact('optionSelect'));        
+        return view('admin.menu.add', compact('optionSelect'));
     }
 
     public function store(Request $request)
-    {   
+    {
         $this->menu->create([
             'name' => $request->name,
             'parent_id' => $request->parent_id,
@@ -41,13 +41,14 @@ class AdminMenuController extends Controller
         return redirect()->route('menus.index');
     }
 
-    public function edit($id, Request $request, ) {
+    public function edit($id, Request $request,)
+    {
         $menuFollowIdEdit = $this->menu->find($id);
         $optionSelect = $this->menuRecusive->menuRecusiveEdit($menuFollowIdEdit->parent_id);
         return view('admin.menu.edit', compact('optionSelect', 'menuFollowIdEdit'));
     }
 
-    public function update($id, Request $request) 
+    public function update($id, Request $request)
     {
         $this->menu->find($id)->update([
             'name' => $request->name,
@@ -57,28 +58,20 @@ class AdminMenuController extends Controller
         return redirect()->route('menus.index');
     }
 
-    public function delete($id) 
+    public function delete($id)
     {
-    // $menu = Menu::where('id',$id)->first();
-
-    // if ($menu != null) {
-    //     $menu->delete();
-    //     return redirect()->route('menus.index')->with(['message'=> 'Successfully deleted!!']);
-    // }
-    //     return redirect()->route('admin.menus.index')->with(['message'=> 'Wrong ID!!']);
-    // }
-    try {
-        $this->menu->find($id)->delete();
-        return response()->json([
-            'code' => 200,
-            'message' => 'success'
-        ], 200);
-    } catch (\Exception $exception) {
-        Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
-        return response()->json([
-            'code' => 500,
-            'message' => 'fail'
-        ], 500);
+        try {
+            $this->menu->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
+        } catch (\Exception $exception) {
+            Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail'
+            ], 500);
+        }
     }
-}
 }

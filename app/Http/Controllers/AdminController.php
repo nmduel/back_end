@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         if(auth()->check())
         {
-            return redirect()->to('homepage');
+            return redirect()->to('/');
         }
         return view('login');    
     }
@@ -29,7 +29,7 @@ class AdminController extends Controller
             'password' => $request->password
         ], $remember))
         {
-            return redirect()->to('homepage');
+            return redirect()->to('/');
         }else
         {
             return alert('Sai mat khau');
@@ -39,6 +39,6 @@ class AdminController extends Controller
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-        return redirect('/homepage');
+        return redirect('/');
     }
 }

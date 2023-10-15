@@ -12,7 +12,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/create', [
             'as' => 'roles.create',
             'uses' => 'AdminRoleController@create',
-            'middleware' => 'can:role-add'
+            // 'middleware' => 'can:role-add'
         ]);
 
         Route::post('/store', [
@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/edit/{id}', [
             'as' => 'roles.edit',
             'uses' => 'AdminRoleController@edit',
-            'middleware' => 'can:role-edit,id'
+            // 'middleware' => 'can:role-edit,id'
         ]);
 
         Route::post('/update/{id}', [
@@ -34,7 +34,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/delete/{id}', [
             'as' => 'roles.delete',
             'uses' => 'AdminRoleController@delete',
-            'middleware' => 'can:role-delete'
+            // 'middleware' => 'can:role-delete'
         ]);
     });
 });

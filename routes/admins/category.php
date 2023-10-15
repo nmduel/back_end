@@ -7,13 +7,13 @@ Route::prefix('admin')->group(function() {
         Route::get('/', [
             'as' => 'categories.index',
             'uses' => 'AdminCategoryController@index',
-            'middleware' => 'can:category-list'
+            // 'middleware' => 'can:category-list'
         ]);
 
         Route::get('/create', [
             'as' => 'categories.create',
             'uses' => 'AdminCategoryController@create',
-            'middleware' => 'can:category-add'
+            // 'middleware' => 'can:category-add'
         ]);
 
         Route::post('/store', [
@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/edit/{id}', [
             'as' => 'categories.edit',
             'uses' => 'AdminCategoryController@edit',
-            'middleware' => 'can:category-edit,id'
+            // 'middleware' => 'can:category-edit,id'
         ]);
 
         Route::post('/update/{id}', [
@@ -35,7 +35,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/delete/{id}', [
             'as' => 'categories.delete',
             'uses' => 'AdminCategoryController@delete',
-            'middleware' => 'can:category-delete'
+            // 'middleware' => 'can:category-delete'
         ]);
     });
 });

@@ -35,7 +35,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          @can('category-list')
+          {{-- @can('category-list') --}}
           <li class="nav-item">
             <a href="{{ route('categories.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -44,8 +44,8 @@
               </p>
             </a>
           </li>
-          @endcan
-          @can('menu-list')
+          {{-- @endcan --}}
+          {{-- @can('menu-list') --}}
           <li class="nav-item">
             <a href="{{ route('menus.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -54,8 +54,8 @@
               </p>
             </a>
           </li>
-          @endcan
-          @can('product-list')
+          {{-- @endcan --}}
+          {{-- @can('product-list') --}}
           <li class="nav-item">
             <a href="{{ route('products.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -64,9 +64,9 @@
               </p>
             </a>
           </li>
-          @endcan
+          {{-- @endcan --}}
           
-          @can('slider-list')
+          {{-- @can('slider-list') --}}
           <li class="nav-item">
             <a href="{{ route('sliders.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -75,9 +75,9 @@
               </p>
             </a>
           </li>
-          @endcan
+          {{-- @endcan --}}
           
-          @can('setting-list')
+          {{-- @can('setting-list') --}}
           <li class="nav-item">
             <a href="{{ route('settings.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -86,7 +86,7 @@
               </p>
             </a>
           </li>
-          @endcan
+          {{-- @endcan --}}
           <li class="nav-item">
             <a href="{{ route('users.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
