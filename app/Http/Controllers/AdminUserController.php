@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
@@ -27,9 +28,9 @@ class AdminUserController extends Controller
         return view('admin.user.index', compact('users'));    
     }
 
-    public function create()
+    public function create(Permission $permission)
     {
-        $roles = $this->role->all();    
+        $roles = $this->role->all();
         return view('admin.user.add', compact('roles'));
     }
 

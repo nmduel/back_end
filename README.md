@@ -1,2 +1,2 @@
-Thay đổi tên database.
-Đầu tiên thêm tài khoản user xong đặt quyền admin 
+Đã làm dc CRUD cơ bản, login(logout), phân quyền user
+Hiện chỉ đang dùng cho admin

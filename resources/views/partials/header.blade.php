@@ -1,3 +1,6 @@
+@php
+    $baseUrl = config('app.base_url');
+@endphp 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -6,7 +9,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/homepage" class="nav-link">Home</a>
+        <a href="{{ $baseUrl }}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -47,9 +50,12 @@
           <i class="fas fa-th-large dropdown" ></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/admin">Home Page</a>
-          <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/">Home Page</a>
+          @if (Auth::check())
           <a class="dropdown-item" href="/admin/logout">Log out</a>
+          @else
+          <a class="dropdown-item" href="/login">Login</a>
+          @endif
         </div>
       </li>
     </ul>
